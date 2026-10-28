@@ -1,0 +1,583 @@
+
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --primary-light: #eef2ff;
+  --text: #172554;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --white: #ffffff;
+  --background: #f8faff;
+  --shadow: 0 8px 30px rgba(30, 41, 59, 0.07);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #a5b4fc;
+  outline-offset: 2px;
+}
+
+/* =========================
+   NAVIGATION BAR
+========================= */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 18px 7%;
+  background: var(--white);
+  border-bottom: 1px solid #eef2f7;
+  box-shadow: 0 3px 15px rgba(15, 23, 42, 0.04);
+  position: relative;
+  z-index: 10;
+}
+
+.navbar h2 {
+  color: var(--primary);
+  margin: 0;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
+
+.navbar button,
+.back-link button {
+  background: transparent;
+  border: none;
+  padding: 10px 13px;
+  border-radius: 8px;
+  color: #475569;
+  font-weight: 600;
+}
+
+.navbar button:hover,
+.back-link button:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* =========================
+   HOME / HERO SECTION
+========================= */
+
+.hero {
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 75px 20px;
+  background:
+    radial-gradient(
+      ellipse at top,
+      #e0e7ff 0%,
+      #f8faff 60%,
+      #ffffff 100%
+    );
+}
+
+.tagline {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+  background: #ffffffc9;
+  padding: 8px 14px;
+  border: 1px solid #e0e7ff;
+  border-radius: 30px;
+}
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1.12;
+  letter-spacing: -1.8px;
+  max-width: 800px;
+  margin: 20px 0 12px;
+  color: #172554;
+}
+
+.hero p:not(.tagline) {
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.8;
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.primary {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 13px 22px;
+  border-radius: 9px;
+  font-weight: 700;
+  box-shadow: 0 5px 12px rgba(79, 70, 229, 0.16);
+  margin-top: 14px;
+}
+
+.primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(79, 70, 229, 0.2);
+}
+
+.primary:active {
+  transform: translateY(0);
+}
+
+.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* =========================
+   REGISTRATION / LOGIN FORMS
+========================= */
+
+.register-card {
+  background: var(--white);
+  width: min(92%, 460px);
+  margin: 45px auto;
+  padding: 34px;
+  border: 1px solid #edf0f7;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.register-card h1 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 29px;
+  letter-spacing: -0.7px;
+}
+
+.register-card > p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.register-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.register-card label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #334155;
+}
+
+.register-card input,
+.register-card textarea,
+.register-card select {
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  margin-bottom: 10px;
+  width: 100%;
+  background: #ffffff;
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.register-card input:focus,
+.register-card textarea:focus,
+.register-card select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px #4f46e51a;
+}
+
+.register-card input::placeholder,
+.register-card textarea::placeholder {
+  color: #94a3b8;
+}
+
+.register-card form .primary {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* =========================
+   MESSAGES
+========================= */
+
+.message {
+  overflow-wrap: anywhere;
+  padding: 13px 15px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #3730a3;
+  border: 1px solid #c7d2fe;
+  font-size: 14px;
+  margin: 15px 0;
+}
+
+/* =========================
+   EVENTS GRID
+========================= */
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 280px), 1fr)
+  );
+  gap: 24px;
+  margin-top: 28px;
+}
+
+.event-card {
+  background: var(--white);
+  padding: 25px;
+  border: 1px solid #edf0f7;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(15, 23, 42, 0.045);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(30, 41, 59, 0.1);
+  border-color: #c7d2fe;
+}
+
+.event-card h3 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 21px;
+  line-height: 1.4;
+  color: #1e1b4b;
+}
+
+.event-card p {
+  margin: 8px 0;
+  line-height: 1.7;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.event-card .primary {
+  display: block;
+  margin-top: auto;
+  padding-top: 13px;
+  width: 100%;
+}
+
+/* =========================
+   COMMON CONTENT SECTIONS
+========================= */
+
+main {
+  width: 100%;
+}
+
+section:not(.hero) {
+  scroll-margin-top: 25px;
+}
+
+h2,
+h3 {
+  line-height: 1.35;
+}
+
+.back-link {
+  text-align: center;
+  margin-top: 18px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 26px 15px;
+  font-size: 13px;
+  margin-top: 35px;
+  border-top: 1px solid var(--border);
+  background: var(--white);
+}
+
+/* =========================
+   TABLET RESPONSIVENESS
+========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 16px 5%;
+    gap: 12px;
+  }
+
+  .navbar h2 {
+    font-size: 22px;
+  }
+
+  .hero {
+    min-height: 55vh;
+    padding: 55px 20px;
+  }
+
+  .hero h1 {
+    letter-spacing: -1px;
+  }
+
+  .events-grid {
+    gap: 18px;
+  }
+
+  .event-card {
+    padding: 22px;
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVENESS
+========================= */
+
+@media (max-width: 500px) {
+  .navbar {
+    justify-content: center;
+    padding: 15px 12px;
+    gap: 8px;
+  }
+
+  .navbar h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .navbar button,
+  .back-link button {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 65px 18px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p:not(.tagline) {
+    font-size: 15px;
+  }
+
+  .register-card {
+    padding: 24px 20px;
+    margin: 28px auto;
+    border-radius: 14px;
+  }
+
+  .register-card h1 {
+    font-size: 25px;
+  }
+
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .event-card {
+    padding: 21px;
+  }
+
+  footer {
+    margin-top: 20px;
+  }
+}
+
+/* ===== ADMIN DASHBOARD ===== */
+
+.register-card:has(h1:first-child) {
+  max-width: 1100px;
+}
+
+.register-card h2 {
+  margin-top: 36px;
+  margin-bottom: 18px;
+  color: #1e1b4b;
+  font-size: 25px;
+}
+
+.register-card form {
+  padding: 24px;
+  background: #f8faff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.register-card form textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.register-card form button:not(.primary) {
+  padding: 11px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  color: #334155;
+  font-weight: 600;
+}
+
+.register-card form button:not(.primary):hover {
+  background: #eef2ff;
+}
+
+.event-card > button {
+  width: 100%;
+  padding: 11px 14px;
+  margin-top: 10px;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-weight: 700;
+}
+
+.event-card > button:hover {
+  background: #e0e7ff;
+}
+
+.event-card > button:has(+ button) {
+  margin-top: 16px;
+}
+
+.event-card > button[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.registrations-list {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #e0e7ff;
+  border-radius: 12px;
+  background: #f8faff;
+  overflow-wrap: anywhere;
+}
+
+.registrations-list h4 {
+  margin: 0 0 12px;
+  color: #3730a3;
+  font-size: 16px;
+}
+
+.student-registration {
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: white;
+}
+
+.student-registration p {
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 500px) {
+  .register-card:has(h1:first-child) {
+    width: 94%;
+    padding: 18px;
+  }
+
+  .register-card form {
+    padding: 16px;
+  }
+
+  .register-card h2 {
+    font-size: 22px;
+  }
+}
+
+/* Event Search Bar */
+.event-search {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto 28px;
+  padding: 14px 18px;
+  border: 1px solid #c7d2fe;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #1e1b4b;
+  font-size: 15px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-search:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+.event-search::placeholder {
+  color: #94a3b8;
+}
