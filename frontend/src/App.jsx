@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import "./App.css";
-
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8081";
 function App() {
   const [page, setPage] = useState("home");
   const [message, setMessage] = useState("");
@@ -51,7 +50,7 @@ function App() {
       setEventsError("");
 
       const response = await fetch(
-        "http://localhost:8081/api/events"
+        API_URL + "/api/events"
       );
 
       if (!response.ok) {
@@ -113,7 +112,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/auth/register",
+        API_URL + "/api/auth/register",
         {
           method: "POST",
           headers: {
@@ -177,7 +176,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/auth/login",
+        API_URL + "/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -237,7 +236,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://localhost:8081/api/event-registrations",
+        API_URL + "/api/event-registrations",
         {
           method: "POST",
           headers: {
@@ -287,6 +286,8 @@ function App() {
   }
 
   // Fetch registrations for the logged-in student
+  
+  // Fetch registrations for the logged-in student
   async function fetchMyRegistrations() {
     if (!currentUser) {
       setPage("login");
@@ -301,7 +302,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:8081/api/event-registrations?email=${encodeURIComponent(
+        `${API_URL}/api/event-registrations?email=${encodeURIComponent(
           currentUser.email
         )}`
       );
@@ -340,17 +341,17 @@ function App() {
     }
   }
 
-  // Admin: add or update an event
-   async function saveEvent(e){
+  // Admin: Add or update an event
+  async function saveEvent(e) {
     e.preventDefault();
     setMessage("");
     setLoading(true);
 
     try {
       const url = editingEventId
-        ? `http://localhost:8081/api/events/${editingEventId}`
-        : "http://localhost:8081/api/events";
-      console.log("Event data being sent:", adminForm);
+        ? `${API_URL}/api/events/${editingEventId}`
+        : `${API_URL}/api/events`;
+
       const response = await fetch(url, {
         method: editingEventId ? "PUT" : "POST",
         headers: {
@@ -371,22 +372,23 @@ function App() {
       if (!response.ok) {
         throw new Error(
           data.message ||
-            data.detail ||
-            data.error ||
-            "Could not save the event."
+          data.detail ||
+          data.error ||
+          "Could not save the event."
         );
       }
 
       setAdminForm({
-  title: "",
-  description: "",
-  category: "",
-  eventDate: "",
-  eventTime: "",
-  venue: "",
-});
+        title: "",
+        description: "",
+        category: "",
+        eventDate: "",
+        eventTime: "",
+        venue: "",
+      });
 
       setEditingEventId(null);
+
       setMessage(
         editingEventId
           ? "Event updated successfully!"
@@ -394,6 +396,7 @@ function App() {
       );
 
       await fetchEvents();
+
     } catch (error) {
       setMessage(
         error.message === "Failed to fetch"
@@ -436,7 +439,7 @@ setAdminForm({
 
     try {
       const response = await fetch(
-        `http://localhost:8081/api/events/${eventId}`,
+        `${API_URL}/api/events/${eventId}`,
         {
           method: "DELETE",
         }
@@ -473,17 +476,17 @@ setAdminForm({
     }
 
     setSelectedEventId(eventId);
-    setEventRegistrations([]);
-    setEventRegistrationsError("");
-    setEventRegistrationsLoading(true);
+setEventRegistrations([]);
+setEventRegistrationsError("");
+setEventRegistrationsLoading(true);
 
-    try {
-      const response = await fetch(
-        `http://localhost:8081/api/event-registrations/event/${eventId}`
-      );
+try {
+  const response = await fetch(
+    `${API_URL}/api/event-registrations/event/${eventId}`
+  );
 
-      const responseText = await response.text();
-      let data = [];
+  const responseText = await response.text();
+  let data = [];
 
       try {
         data = JSON.parse(responseText);
